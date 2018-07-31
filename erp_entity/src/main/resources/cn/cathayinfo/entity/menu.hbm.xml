@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.cathayinfo.entity.Menu" table="menu" >
+        <id name="menuid" >
+            <!--<generator class="native"></generator>-->
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <!--初始值，默认是1-->
+                <param name="initial_value">1000</param>
+                <!--自增大小，默认是1-->
+                <param name="increment_siz">1</param>
+                <!--sequence的名字，默认是"hibernate_sequence"-->
+                <param name="sequence_name">hibernate_sequence</param>
+            </generator>
+        </id>
+
+
+        <property name="menuname" /> 
+        <property name="icon" /> 
+        <property name="url" /> 
+        
+        <!-- 自关联 -->
+        <bag name="menus" order-by="menuid">
+        	<key column="pid"></key>
+        	<one-to-many class="cn.cathayinfo.entity.Menu"/>
+        </bag>
+ 
+    </class>
+</hibernate-mapping>
